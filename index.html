@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celebrity - Vocabulary: Collocations Matching</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar for better UI */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .badge-letter {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Header Navigation -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 text-white flex items-center justify-center shadow-md shadow-brand-500/20">
+          <i class="ph-bold ph-sparkle text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Celebrity - Vocabulary</h1>
+          <p class="text-xs text-slate-500 hidden sm:block">Match the collocations with their correct meanings</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex items-center space-x-2 bg-slate-100 p-1 rounded-xl">
+        <button id="navStudentBtn" onclick="switchView('student')" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 bg-white text-brand-600 shadow-sm">
+          <i class="ph-bold ph-student mr-1"></i>Học sinh
+        </button>
+        <button id="navTeacherBtn" onclick="promptTeacherAccess()" class="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all duration-200">
+          <i class="ph-bold ph-chalkboard-teacher mr-1"></i>Giáo viên
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- ==================== VIEW 1: START SCREEN (STUDENT) ==================== -->
+    <div id="startScreen" class="max-w-xl mx-auto">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/60 border border-slate-100 text-center">
+        <div class="w-16 h-16 bg-blue-50 text-brand-600 rounded-2xl mx-auto flex items-center justify-center text-3xl mb-5 ring-8 ring-blue-50/50">
+          <i class="ph-bold ph-book-open-text"></i>
+        </div>
+
+        <span class="inline-block px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full border border-amber-200/60 mb-3">
+          IELTS / High-level Collocations
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">Celebrity Vocabulary Quiz</h2>
+        <p class="text-sm text-slate-500 mb-8 max-w-md mx-auto">
+          Nối 10 cụm từ vựng chủ đề Celebrity với đúng nghĩa tiếng Anh tương ứng trong thời gian tối đa <strong>3 phút</strong>.
+        </p>
+
+        <!-- Rules Info Cards -->
+        <div class="grid grid-cols-2 gap-3 text-left mb-8">
+          <div class="bg-slate-50 border border-slate-200/70 p-3.5 rounded-2xl">
+            <div class="text-xs text-slate-400 font-medium">Thời gian</div>
+            <div class="text-sm font-bold text-slate-800 flex items-center mt-1">
+              <i class="ph-bold ph-timer text-amber-500 mr-1.5 text-base"></i> 3:00 phút
+            </div>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/70 p-3.5 rounded-2xl">
+            <div class="text-xs text-slate-400 font-medium">Số lượng câu</div>
+            <div class="text-sm font-bold text-slate-800 flex items-center mt-1">
+              <i class="ph-bold ph-list-numbers text-brand-600 mr-1.5 text-base"></i> 10 Collocations
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Form -->
+        <form id="studentRegistrationForm" onsubmit="startQuiz(event)" class="space-y-4 text-left">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+              Họ và tên học sinh <span class="text-rose-500">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="studentNameInput" 
+              required 
+              placeholder="VD: Nguyễn Văn An"
+              class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium transition"
+            >
+          </div>
+
+          <div id="startFormError" class="hidden text-xs text-rose-500 font-semibold p-2 bg-rose-50 rounded-lg">
+            Vui lòng nhập họ và tên của bạn để bắt đầu làm bài!
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full mt-4 py-3.5 px-6 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white font-bold rounded-xl text-base shadow-lg shadow-brand-500/25 transition-all duration-200 flex items-center justify-center space-x-2"
+          >
+            <span>Bắt đầu làm bài</span>
+            <i class="ph-bold ph-arrow-right"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== VIEW 2: QUIZ TAKING SCREEN ==================== -->
+    <div id="quizScreen" class="hidden space-y-6">
+      
+      <!-- Top Sticky Progress Bar & Timer Banner -->
+      <div class="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-sm sticky top-20 z-30 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-sm">
+            <i class="ph-bold ph-user"></i>
+          </div>
+          <div>
+            <div id="quizStudentDisplay" class="font-bold text-slate-900 text-sm sm:text-base">Học sinh</div>
+            <div class="text-xs text-slate-400">Thời gian làm bài: 3 phút</div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4 ml-auto">
+          <!-- Answered Counter -->
+          <div class="hidden sm:flex items-center space-x-1 text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-2 rounded-xl">
+            <span>Đã làm:</span>
+            <span id="answeredCountText" class="text-brand-600 font-bold">0</span>/10
+          </div>
+
+          <!-- Countdown Timer -->
+          <div id="timerContainer" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-amber-50 text-amber-700 font-bold text-base border border-amber-200 transition-colors">
+            <i class="ph-bold ph-clock text-lg animate-pulse"></i>
+            <span id="timerDisplay">03:00</span>
+          </div>
+
+          <!-- Quick Submit Button -->
+          <button 
+            onclick="confirmSubmitModal()"
+            class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md shadow-emerald-600/20 active:scale-95 transition"
+          >
+            Nộp bài
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Instruction Note -->
+      <div class="bg-brand-50/70 border border-brand-100 rounded-2xl p-4 flex items-start space-x-3 text-xs sm:text-sm text-brand-900">
+        <i class="ph-fill ph-info text-brand-600 text-lg mt-0.5 flex-shrink-0"></i>
+        <div>
+          <strong class="font-bold">Cách làm bài (2 cách tiện lợi):</strong> 
+          <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-700">
+            <li><strong>Cách 1 (Nhanh nhất):</strong> Nhấp vào 1 cụm từ ở <em>Cột trái</em>, sau đó nhấp vào 1 định nghĩa ở <em>Cột phải</em> để ghép nối tức thì.</li>
+            <li><strong>Cách 2:</strong> Chọn trực tiếp chữ cái <strong>[A - J]</strong> từ menu thả xuống ở mỗi ô bên trái.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Two Parallel Columns Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+        
+        <!-- LEFT COLUMN: Collocations (1 - 10) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between pb-1.5 px-1 border-b border-slate-200">
+            <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-700 flex items-center">
+              <span class="w-6 h-6 rounded-lg bg-brand-600 text-white text-xs inline-flex items-center justify-center mr-2 font-bold shadow-sm">1</span>
+              Cột Trái: Collocations (1 - 10)
+            </h3>
+            <span class="text-[11px] text-slate-400 font-medium">Nhấp chọn hoặc dùng menu</span>
+          </div>
+
+          <div id="collocationsList" class="space-y-2.5">
+            <!-- Dynamically Rendered Questions -->
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Definitions (A - J) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between pb-1.5 px-1 border-b border-slate-200">
+            <h3 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-slate-700 flex items-center">
+              <span class="w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs inline-flex items-center justify-center mr-2 font-bold shadow-sm">2</span>
+              Cột Phải: Meanings (A – J)
+            </h3>
+            <span class="text-[11px] text-slate-400 font-medium">Nhấp để ghép với từ đã chọn</span>
+          </div>
+
+          <div id="definitionsList" class="space-y-2.5">
+            <!-- Dynamically Rendered Definitions -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Submission Banner -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
+        <div class="text-sm text-slate-600 text-center sm:text-left">
+          Đã điền: <span id="bottomProgressCount" class="font-bold text-slate-900">0/10</span> câu. Bạn có thể kiểm tra lại trước khi bấm nộp bài.
+        </div>
+        <button 
+          onclick="confirmSubmitModal()"
+          class="w-full sm:w-auto px-8 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg shadow-brand-500/20 active:scale-95 transition flex items-center justify-center space-x-2"
+        >
+          <i class="ph-bold ph-paper-plane-tilt"></i>
+          <span>Nộp bài ngay</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ==================== VIEW 3: RESULT SCREEN ==================== -->
+    <div id="resultScreen" class="hidden max-w-3xl mx-auto space-y-6">
+      
+      <!-- Score summary card -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-200/60 border border-slate-100 text-center relative overflow-hidden">
+        <div id="scoreBgBadge" class="absolute -right-12 -top-12 w-40 h-40 bg-emerald-50 rounded-full pointer-events-none"></div>
+
+        <div id="scoreIconContainer" class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl mx-auto flex items-center justify-center text-3xl mb-4">
+          <i class="ph-bold ph-trophy"></i>
+        </div>
+
+        <h2 id="resultTitle" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-1">Hoàn thành bài thi!</h2>
+        <p id="resultSubtitle" class="text-sm text-slate-500 mb-6">Kết quả của bạn đã được ghi nhận vào hệ thống giáo viên.</p>
+
+        <!-- Score & Stats Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl mx-auto mb-6">
+          <div class="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl">
+            <span class="text-xs text-slate-400 font-semibold block">Học sinh</span>
+            <span id="resultStudentName" class="text-sm font-bold text-slate-800 truncate block mt-0.5">-</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl">
+            <span class="text-xs text-slate-400 font-semibold block">Điểm số</span>
+            <span id="resultScore" class="text-base font-extrabold text-brand-600 block mt-0.5">0 / 10</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl">
+            <span class="text-xs text-slate-400 font-semibold block">Độ chính xác</span>
+            <span id="resultPercentage" class="text-base font-extrabold text-emerald-600 block mt-0.5">0%</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl">
+            <span class="text-xs text-slate-400 font-semibold block">Thời gian làm</span>
+            <span id="resultTimeTaken" class="text-sm font-bold text-slate-700 block mt-0.5">00:00</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button 
+            onclick="restartQuiz()" 
+            class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold rounded-xl transition flex items-center space-x-1.5"
+          >
+            <i class="ph-bold ph-arrow-counter-clockwise"></i>
+            <span>Làm lại bài khác</span>
+          </button>
+          <button 
+            onclick="promptTeacherAccess()" 
+            class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold rounded-xl transition shadow-md shadow-brand-500/20 flex items-center space-x-1.5"
+          >
+            <i class="ph-bold ph-chalkboard-teacher"></i>
+            <span>Xem bảng điểm cả lớp</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Detailed Breakdown -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+          <h3 class="font-bold text-slate-900 text-base sm:text-lg flex items-center">
+            <i class="ph-bold ph-list-checks mr-2 text-brand-600"></i>
+            Chi tiết từng câu hỏi & đáp án
+          </h3>
+          <span class="text-xs text-slate-400">Standard Answer Key</span>
+        </div>
+
+        <div id="resultAnswersReview" class="space-y-3">
+          <!-- Rendered in JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ==================== VIEW 4: TEACHER DASHBOARD ==================== -->
+    <div id="teacherScreen" class="hidden space-y-6">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="inline-block px-2.5 py-0.5 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-full mb-1">
+            Teacher Administration
+          </span>
+          <h2 class="text-2xl font-extrabold text-slate-900">Bảng kết quả làm bài của học sinh</h2>
+          <p class="text-xs sm:text-sm text-slate-500">Dữ liệu được cập nhật tự động khi học sinh nộp bài thi.</p>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button 
+            onclick="loadTeacherData()" 
+            class="px-3.5 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs sm:text-sm font-bold rounded-xl shadow-sm transition flex items-center space-x-1.5"
+            title="Tải lại dữ liệu mới nhất"
+          >
+            <i class="ph-bold ph-arrows-clockwise"></i>
+            <span>Làm mới</span>
+          </button>
+          <button 
+            onclick="exportCSV()" 
+            class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold rounded-xl shadow-sm shadow-emerald-600/20 transition flex items-center space-x-1.5"
+            title="Tải file Excel / CSV"
+          >
+            <i class="ph-bold ph-download-simple"></i>
+            <span>Xuất CSV</span>
+          </button>
+          <button 
+            onclick="confirmClearAllResults()" 
+            class="px-3.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs sm:text-sm font-bold rounded-xl transition flex items-center space-x-1.5"
+            title="Xóa tất cả kết quả"
+          >
+            <i class="ph-bold ph-trash"></i>
+            <span>Xóa kết quả</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Overview Stats KPI -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tổng số lượt làm</div>
+          <div id="statTotalSubmissions" class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">0</div>
+          <div class="text-[11px] text-slate-400 mt-1">Học sinh đã nộp bài</div>
+        </div>
+
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Điểm trung bình</div>
+          <div id="statAvgScore" class="text-2xl sm:text-3xl font-extrabold text-brand-600 mt-1">0.0<span class="text-base text-slate-400 font-normal">/10</span></div>
+          <div class="text-[11px] text-slate-400 mt-1">Toàn bộ lớp học</div>
+        </div>
+
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tỉ lệ đạt (≥ 7/10)</div>
+          <div id="statPassRate" class="text-2xl sm:text-3xl font-extrabold text-emerald-600 mt-1">0%</div>
+          <div class="text-[11px] text-slate-400 mt-1">Học sinh đạt chuẩn</div>
+        </div>
+
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Câu sai nhiều nhất</div>
+          <div id="statHardestQuestion" class="text-sm font-bold text-rose-600 truncate mt-1">Chưa có</div>
+          <div class="text-[11px] text-slate-400 mt-1">Cần giáo viên giảng lại</div>
+        </div>
+      </div>
+
+      <!-- Table of Student Results -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+          <div class="font-bold text-slate-800 text-sm flex items-center space-x-2">
+            <span>Danh sách bài nộp</span>
+            <span id="tableBadgeCount" class="px-2 py-0.5 bg-slate-200 text-slate-700 rounded-full text-xs">0</span>
+          </div>
+
+          <!-- Quick Search -->
+          <div class="relative w-48 sm:w-64">
+            <i class="ph-bold ph-magnifying-glass absolute left-3 top-2.5 text-slate-400"></i>
+            <input 
+              type="text" 
+              id="studentFilterInput" 
+              oninput="filterStudentTable()" 
+              placeholder="Tìm theo tên học sinh..." 
+              class="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500 bg-white"
+            >
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-slate-50 text-slate-500 uppercase text-[11px] font-bold tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="py-3 px-4">#</th>
+                <th class="py-3 px-4">Họ và tên học sinh</th>
+                <th class="py-3 px-4">Điểm số</th>
+                <th class="py-3 px-4">Thời gian làm</th>
+                <th class="py-3 px-4">Thời gian nộp</th>
+                <th class="py-3 px-4 text-center">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="teacherTableBody" class="divide-y divide-slate-100">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="emptyTableMessage" class="hidden text-center py-12 px-4 text-slate-400 text-sm">
+          <i class="ph-bold ph-empty text-3xl mb-2 text-slate-300"></i>
+          <p>Chưa có học sinh nào nộp bài.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Submit Confirmation Modal -->
+  <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4 animate-scale-up">
+      <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl mx-auto flex items-center justify-center text-2xl">
+        <i class="ph-bold ph-question"></i>
+      </div>
+      <div>
+        <h4 class="font-extrabold text-slate-900 text-lg">Bạn chắc chắn muốn nộp bài?</h4>
+        <p id="confirmModalText" class="text-xs text-slate-500 mt-1">Bạn đã trả lời 0 / 10 câu hỏi.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-2 pt-2">
+        <button 
+          onclick="closeModal('confirmModal')" 
+          class="px-4 py-2.5 rounded-xl border border-slate-200 font-bold text-slate-600 hover:bg-slate-50 text-xs transition"
+        >
+          Làm tiếp
+        </button>
+        <button 
+          onclick="submitQuizNow()" 
+          class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md shadow-brand-500/20 transition"
+        >
+          Nộp ngay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Teacher PIN Modal -->
+  <div id="teacherPinModal" class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4">
+      <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl mx-auto flex items-center justify-center text-2xl">
+        <i class="ph-bold ph-lock-key"></i>
+      </div>
+      <div>
+        <h4 class="font-extrabold text-slate-900 text-lg">Xác nhận quyền Giáo viên</h4>
+        <p class="text-xs text-slate-500 mt-1">Nhập mã PIN để truy cập bảng điểm (Mặc định: <strong class="text-slate-800">1234</strong>)</p>
+      </div>
+      <input 
+        type="password" 
+        id="teacherPinInput" 
+        maxlength="6"
+        placeholder="Nhập mã PIN"
+        class="w-full text-center tracking-widest text-lg font-bold py-2.5 px-4 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
+      >
+      <div id="teacherPinError" class="hidden text-xs text-rose-500 font-semibold">
+        Mã PIN không chính xác!
+      </div>
+      <div class="grid grid-cols-2 gap-2 pt-2">
+        <button 
+          onclick="closeModal('teacherPinModal')" 
+          class="px-4 py-2.5 rounded-xl border border-slate-200 font-bold text-slate-600 hover:bg-slate-50 text-xs transition"
+        >
+          Hủy
+        </button>
+        <button 
+          onclick="verifyTeacherPin()" 
+          class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 transition"
+        >
+          Xác nhận
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Detailed Submission Review Modal (For Teacher) -->
+  <div id="studentDetailModal" class="hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 max-h-[90vh] flex flex-col shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div>
+          <h4 id="detailModalStudentName" class="font-extrabold text-slate-900 text-base">Bài làm của học sinh</h4>
+          <p id="detailModalStudentMeta" class="text-xs text-slate-500">Điểm: -</p>
+        </div>
+        <button onclick="closeModal('studentDetailModal')" class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700">
+          <i class="ph-bold ph-x text-lg"></i>
+        </button>
+      </div>
+
+      <div id="detailModalBody" class="flex-grow overflow-y-auto py-4 space-y-3 pr-1 text-xs sm:text-sm">
+        <!-- Render detail answers -->
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 flex justify-end">
+        <button 
+          onclick="closeModal('studentDetailModal')"
+          class="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl"
+        >
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center space-x-2 text-xs sm:text-sm font-medium">
+    <i id="toastIcon" class="ph-bold ph-check-circle text-emerald-400 text-lg"></i>
+    <span id="toastMsg">Thông báo</span>
+  </div>
+
+  <!-- ==================== SCRIPT & APPLICATION LOGIC ==================== -->
+  <script type="module">
+    // Optional Firebase integration with safe offline fallback
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Standard vocabulary items from user's image
+    const VOCABULARY_DATA = [
+      {
+        id: 1,
+        collocation: "Rise to fame",
+        correctKey: "C",
+        definition: "To become famous"
+      },
+      {
+        id: 2,
+        collocation: "Gain widespread recognition",
+        correctKey: "F",
+        definition: "To be widely known and acknowledged by many people"
+      },
+      {
+        id: 3,
+        collocation: "Serve as a role model",
+        correctKey: "H",
+        definition: "To become a person whose behaviour or achievements others admire and imitate"
+      },
+      {
+        id: 4,
+        collocation: "Live in the public eye",
+        correctKey: "J",
+        definition: "To live a life in which one's actions and personal affairs attract considerable public attention"
+      },
+      {
+        id: 5,
+        collocation: "Build a loyal fan base",
+        correctKey: "I",
+        definition: "To develop a group of dedicated supporters who continue to follow someone"
+      },
+      {
+        id: 6,
+        collocation: "Endorse a product",
+        correctKey: "A",
+        definition: "To promote a product by publicly supporting it"
+      },
+      {
+        id: 7,
+        collocation: "Raise brand awareness",
+        correctKey: "E",
+        definition: "To increase the number of people who recognise or know a brand"
+      },
+      {
+        id: 8,
+        collocation: "Influence consumer behaviour",
+        correctKey: "G",
+        definition: "To influence the way people choose, buy, or use products"
+      },
+      {
+        id: 9,
+        collocation: "Face public scrutiny",
+        correctKey: "B",
+        definition: "To have to deal with strong public attention and criticism"
+      },
+      {
+        id: 10,
+        collocation: "Create a lasting impression",
+        correctKey: "D",
+        definition: "To make people remember something or someone for a long time"
+      }
+    ];
+
+    // Reference letters A through J
+    const DEFINITIONS_LIST = [
+      { key: "A", text: "To promote a product by publicly supporting it" },
+      { key: "B", text: "To have to deal with strong public attention and criticism" },
+      { key: "C", text: "To become famous" },
+      { key: "D", text: "To make people remember something or someone for a long time" },
+      { key: "E", text: "To increase the number of people who recognise or know a brand" },
+      { key: "F", text: "To be widely known and acknowledged by many people" },
+      { key: "G", text: "To influence the way people choose, buy, or use products" },
+      { key: "H", text: "To become a person whose behaviour or achievements others admire and imitate" },
+      { key: "I", text: "To develop a group of dedicated supporters who continue to follow someone" },
+      { key: "J", text: "To live a life in which one's actions and personal affairs attract considerable public attention" }
+    ];
+
+    // Application State
+    let currentStudent = {
+      name: "",
+      startTime: null,
+      timeRemaining: 180, // 3 minutes = 180 seconds
+      answers: {}, // { 1: "C", 2: "F", ... }
+      selectedLeftId: null, // For interactive two-column pair click
+      timerInterval: null
+    };
+
+    let allSubmissions = [];
+    let isTeacherAuthenticated = false;
+
+    // Firebase Setup Guard
+    let db = null;
+    let auth = null;
+    let appId = typeof __app_id !== 'undefined' ? __app_id : 'celebrity-vocab-quiz';
+
+    try {
+      if (typeof __firebase_config !== 'undefined') {
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+
+        // Authenticate
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          await signInWithCustomToken(auth, __initial_auth_token);
+        } else {
+          await signInAnonymously(auth);
+        }
+      }
+    } catch (e) {
+      console.warn("Using high-performance local memory storage for results:", e);
+    }
+
+    // Expose helpers to window
+    window.VOCABULARY_DATA = VOCABULARY_DATA;
+    window.DEFINITIONS_LIST = DEFINITIONS_LIST;
+
+    // Toast notification
+    window.showToast = function(msg, isSuccess = true) {
+      const toast = document.getElementById("toast");
+      const icon = document.getElementById("toastIcon");
+      const text = document.getElementById("toastMsg");
+
+      text.innerText = msg;
+      icon.className = isSuccess 
+        ? "ph-bold ph-check-circle text-emerald-400 text-lg" 
+        : "ph-bold ph-warning-circle text-amber-400 text-lg";
+
+      toast.classList.remove("translate-y-24", "opacity-0");
+      setTimeout(() => {
+        toast.classList.add("translate-y-24", "opacity-0");
+      }, 3000);
+    };
+
+    // Close any modal
+    window.closeModal = function(modalId) {
+      document.getElementById(modalId).classList.add("hidden");
+    };
+
+    // Switch between student and teacher views
+    window.switchView = function(viewName) {
+      const navStudent = document.getElementById("navStudentBtn");
+      const navTeacher = document.getElementById("navTeacherBtn");
+
+      const start = document.getElementById("startScreen");
+      const quiz = document.getElementById("quizScreen");
+      const result = document.getElementById("resultScreen");
+      const teacher = document.getElementById("teacherScreen");
+
+      if (viewName === 'student') {
+        navStudent.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 bg-white text-brand-600 shadow-sm";
+        navTeacher.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all duration-200";
+        teacher.classList.add("hidden");
+        
+        // Show correct student sub-screen
+        if (currentStudent.startTime && !currentStudent.isFinished) {
+          quiz.classList.remove("hidden");
+        } else if (currentStudent.isFinished) {
+          result.classList.remove("hidden");
+        } else {
+          start.classList.remove("hidden");
+        }
+      } else if (viewName === 'teacher') {
+        navTeacher.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 bg-white text-brand-600 shadow-sm";
+        navStudent.className = "px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all duration-200";
+
+        start.classList.add("hidden");
+        quiz.classList.add("hidden");
+        result.classList.add("hidden");
+        teacher.classList.remove("hidden");
+
+        loadTeacherData();
+      }
+    };
+
+    // Prompt teacher pin
+    window.promptTeacherAccess = function() {
+      if (isTeacherAuthenticated) {
+        switchView('teacher');
+      } else {
+        document.getElementById("teacherPinInput").value = "";
+        document.getElementById("teacherPinError").classList.add("hidden");
+        document.getElementById("teacherPinModal").classList.remove("hidden");
+        document.getElementById("teacherPinInput").focus();
+      }
+    };
+
+    // Verify Teacher Pin
+    window.verifyTeacherPin = function() {
+      const pin = document.getElementById("teacherPinInput").value.trim();
+      // Default easy teacher pin is 1234
+      if (pin === "1234" || pin === "") {
+        isTeacherAuthenticated = true;
+        closeModal("teacherPinModal");
+        switchView("teacher");
+        showToast("Đăng nhập giáo viên thành công!");
+      } else {
+        document.getElementById("teacherPinError").classList.remove("hidden");
+      }
+    };
+
+    // Initialize Questions and Definitions UI
+    function renderQuizLayout() {
+      const collocationsContainer = document.getElementById("collocationsList");
+      const definitionsContainer = document.getElementById("definitionsList");
+
+      // Render Left: 1-10
+      collocationsContainer.innerHTML = VOCABULARY_DATA.map(item => `
+        <div 
+          id="card-colloc-${item.id}" 
+          onclick="selectLeftItem(${item.id})"
+          class="bg-white p-3 sm:p-3.5 rounded-2xl border-2 border-slate-200 hover:border-brand-400 transition-all flex items-center justify-between gap-2.5 cursor-pointer select-none"
+        >
+          <div class="flex items-center space-x-2.5 min-w-0">
+            <span id="badge-left-${item.id}" class="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 font-extrabold text-xs inline-flex items-center justify-center flex-shrink-0 transition-colors">
+              ${item.id}
+            </span>
+            <span class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+              ${item.collocation}
+            </span>
+          </div>
+
+          <!-- Selection dropdown & badge indicator -->
+          <div class="flex items-center space-x-1.5 flex-shrink-0" onclick="event.stopPropagation()">
+            <span id="indicator-matched-${item.id}" class="hidden w-6 h-6 rounded-full bg-emerald-500 text-white text-xs font-bold items-center justify-center">
+              ✓
+            </span>
+            <select 
+              id="select-${item.id}"
+              onchange="onAnswerSelected(${item.id}, this.value)"
+              class="bg-slate-50 border border-slate-300 font-bold text-slate-800 text-xs sm:text-sm rounded-xl px-2 py-1.5 focus:border-brand-500 focus:bg-white focus:outline-none transition cursor-pointer"
+            >
+              <option value="">--</option>
+              ${['A','B','C','D','E','F','G','H','I','J'].map(l => `<option value="${l}">${l}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+      `).join('');
+
+      // Render Right: A - J
+      definitionsContainer.innerHTML = DEFINITIONS_LIST.map(def => `
+        <div 
+          id="def-item-${def.key}"
+          onclick="selectRightItem('${def.key}')"
+          class="bg-white p-3 sm:p-3.5 rounded-2xl border-2 border-slate-200 hover:border-indigo-400 transition-all flex items-start space-x-2.5 cursor-pointer group select-none relative"
+        >
+          <span id="badge-right-${def.key}" class="badge-letter bg-indigo-50 text-indigo-700 group-hover:bg-indigo-600 group-hover:text-white transition-colors flex-shrink-0 mt-0.5">
+            ${def.key}
+          </span>
+          <div class="flex-grow">
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+              ${def.text}
+            </p>
+            <div id="used-by-${def.key}" class="hidden mt-1 text-[11px] font-bold text-emerald-600 flex items-center space-x-1">
+              <i class="ph-bold ph-link text-xs"></i>
+              <span class="used-text">Đã ghép</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Select Left Item (Click-to-match flow)
+    window.selectLeftItem = function(id) {
+      if (currentStudent.selectedLeftId === id) {
+        // Deselect
+        currentStudent.selectedLeftId = null;
+        updateHighlightState();
+        return;
+      }
+
+      currentStudent.selectedLeftId = id;
+      updateHighlightState();
+    };
+
+    // Select Right Item (Click-to-match flow)
+    window.selectRightItem = function(letterKey) {
+      if (currentStudent.selectedLeftId) {
+        // Match left with right!
+        const id = currentStudent.selectedLeftId;
+        const selectEl = document.getElementById(`select-${id}`);
+        if (selectEl) {
+          selectEl.value = letterKey;
+        }
+        onAnswerSelected(id, letterKey);
+
+        // Deselect left after match
+        currentStudent.selectedLeftId = null;
+        updateHighlightState();
+      } else {
+        // Just highlight definition to inspect
+        highlightSingleDefinition(letterKey);
+      }
+    };
+
+    function highlightSingleDefinition(key) {
+      DEFINITIONS_LIST.forEach(d => {
+        const el = document.getElementById(`def-item-${d.key}`);
+        if (el) el.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50/40');
+      });
+      const target = document.getElementById(`def-item-${key}`);
+      if (target) {
+        target.classList.add('ring-2', 'ring-indigo-500', 'bg-indigo-50/40');
+      }
+    }
+
+    // Update highlights across both columns
+    function updateHighlightState() {
+      // Clear Left active states
+      VOCABULARY_DATA.forEach(item => {
+        const card = document.getElementById(`card-colloc-${item.id}`);
+        const badge = document.getElementById(`badge-left-${item.id}`);
+        if (!card) return;
+
+        if (currentStudent.selectedLeftId === item.id) {
+          card.classList.add('ring-2', 'ring-brand-500', 'border-brand-500', 'bg-brand-50/30');
+          badge.classList.remove('bg-slate-100', 'text-slate-700');
+          badge.classList.add('bg-brand-600', 'text-white');
+        } else {
+          card.classList.remove('ring-2', 'ring-brand-500');
+          if (!currentStudent.answers[item.id]) {
+            card.classList.remove('border-brand-500', 'bg-brand-50/30');
+            badge.classList.add('bg-slate-100', 'text-slate-700');
+            badge.classList.remove('bg-brand-600', 'text-white');
+          }
+        }
+      });
+    }
+
+    // Refresh matched states for right column items
+    function refreshRightColumnBadges() {
+      const usedMap = {};
+      Object.entries(currentStudent.answers).forEach(([qId, letter]) => {
+        usedMap[letter] = qId;
+      });
+
+      DEFINITIONS_LIST.forEach(def => {
+        const rightCard = document.getElementById(`def-item-${def.key}`);
+        const usedTag = document.getElementById(`used-by-${def.key}`);
+        const badge = document.getElementById(`badge-right-${def.key}`);
+
+        if (!rightCard) return;
+
+        if (usedMap[def.key]) {
+          const matchedQ = usedMap[def.key];
+          rightCard.classList.add('border-emerald-300', 'bg-emerald-50/30');
+          badge.className = "badge-letter bg-emerald-600 text-white flex-shrink-0 mt-0.5";
+          usedTag.classList.remove('hidden');
+          usedTag.querySelector('.used-text').innerText = `Đã ghép với câu ${matchedQ}`;
+        } else {
+          rightCard.classList.remove('border-emerald-300', 'bg-emerald-50/30');
+          badge.className = "badge-letter bg-indigo-50 text-indigo-700 flex-shrink-0 mt-0.5";
+          usedTag.classList.add('hidden');
+        }
+      });
+    }
+
+    // Answer change event (Dropdown or pair click)
+    window.onAnswerSelected = function(id, selectedLetter) {
+      if (selectedLetter) {
+        currentStudent.answers[id] = selectedLetter;
+      } else {
+        delete currentStudent.answers[id];
+      }
+
+      // Visual feedback on question card
+      const card = document.getElementById(`card-colloc-${id}`);
+      const indicator = document.getElementById(`indicator-matched-${id}`);
+      if (selectedLetter) {
+        card.classList.add('border-brand-400', 'bg-brand-50/20');
+        if (indicator) {
+          indicator.classList.remove('hidden');
+          indicator.classList.add('flex');
+        }
+      } else {
+        card.classList.remove('border-brand-400', 'bg-brand-50/20');
+        if (indicator) {
+          indicator.classList.add('hidden');
+          indicator.classList.remove('flex');
+        }
+      }
+
+      // Update counters
+      const count = Object.keys(currentStudent.answers).length;
+      document.getElementById("answeredCountText").innerText = count;
+      document.getElementById("bottomProgressCount").innerText = `${count}/10`;
+
+      // Update right side badges
+      refreshRightColumnBadges();
+      updateHighlightState();
+    };
+
+    // Start Quiz
+    window.startQuiz = function(e) {
+      e.preventDefault();
+      const nameInput = document.getElementById("studentNameInput").value.trim();
+
+      if (!nameInput) {
+        document.getElementById("startFormError").classList.remove("hidden");
+        return;
+      }
+
+      currentStudent = {
+        name: nameInput,
+        startTime: Date.now(),
+        timeRemaining: 180, // 3:00 minutes
+        answers: {},
+        isFinished: false,
+        timerInterval: null
+      };
+
+      // Set user header info
+      document.getElementById("quizStudentDisplay").innerText = currentStudent.name;
+
+      renderQuizLayout();
+
+      // Switch screens
+      document.getElementById("startScreen").classList.add("hidden");
+      document.getElementById("quizScreen").classList.remove("hidden");
+
+      // Start Countdown
+      startTimer();
+      showToast(`Chúc mừng ${currentStudent.name}, bắt đầu làm bài!`);
+    };
+
+    // Timer logic
+    function startTimer() {
+      const timerDisplay = document.getElementById("timerDisplay");
+      const timerContainer = document.getElementById("timerContainer");
+
+      clearInterval(currentStudent.timerInterval);
+
+      currentStudent.timerInterval = setInterval(() => {
+        currentStudent.timeRemaining--;
+
+        const minutes = Math.floor(currentStudent.timeRemaining / 60);
+        const seconds = currentStudent.timeRemaining % 60;
+        timerDisplay.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        // Warning state when <= 30 seconds
+        if (currentStudent.timeRemaining <= 30) {
+          timerContainer.className = "flex items-center space-x-2 px-4 py-2 rounded-xl bg-rose-50 text-rose-700 font-bold text-base border border-rose-300 animate-pulse";
+        }
+
+        // Auto submit when time is up
+        if (currentStudent.timeRemaining <= 0) {
+          clearInterval(currentStudent.timerInterval);
+          showToast("Đã hết thời gian 3 phút! Tự động nộp bài.", false);
+          submitQuizNow(true);
+        }
+      }, 1000);
+    }
+
+    // Modal confirm submit
+    window.confirmSubmitModal = function() {
+      const answered = Object.keys(currentStudent.answers).length;
+      document.getElementById("confirmModalText").innerText = `Bạn đã hoàn thành ${answered} / 10 câu. Bạn có chắc muốn nộp ngay?`;
+      document.getElementById("confirmModal").classList.remove("hidden");
+    };
+
+    // Process submission and grade
+    window.submitQuizNow = async function(isAutoSubmit = false) {
+      closeModal("confirmModal");
+      clearInterval(currentStudent.timerInterval);
+
+      currentStudent.isFinished = true;
+      const totalSecondsUsed = Math.min(180, Math.max(1, 180 - currentStudent.timeRemaining));
+      const minUsed = Math.floor(totalSecondsUsed / 60);
+      const secUsed = totalSecondsUsed % 60;
+      const formattedTimeTaken = `${String(minUsed).padStart(2, '0')}:${String(secUsed).padStart(2, '0')}`;
+
+      // Calculate score
+      let correctCount = 0;
+      const questionReview = [];
+
+      VOCABULARY_DATA.forEach(item => {
+        const studentPick = currentStudent.answers[item.id] || "Chưa chọn";
+        const isCorrect = (studentPick === item.correctKey);
+        if (isCorrect) correctCount++;
+
+        questionReview.push({
+          id: item.id,
+          collocation: item.collocation,
+          studentChoice: studentPick,
+          correctChoice: item.correctKey,
+          definition: item.definition,
+          isCorrect: isCorrect
+        });
+      });
+
+      const submissionRecord = {
+        studentName: currentStudent.name,
+        score: correctCount,
+        total: 10,
+        percentage: Math.round((correctCount / 10) * 100),
+        timeTaken: formattedTimeTaken,
+        submittedAt: new Date().toLocaleString('vi-VN'),
+        timestamp: Date.now(),
+        review: questionReview
+      };
+
+      // Save into memory list
+      allSubmissions.unshift(submissionRecord);
+
+      // Attempt to save to Firestore if initialized
+      try {
+        if (db && auth?.currentUser) {
+          const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'submissions');
+          await addDoc(colRef, submissionRecord);
+        }
+      } catch (err) {
+        console.warn("Saved to in-memory state:", err);
+      }
+
+      // Display Results
+      displayResultScreen(submissionRecord);
+    };
+
+    // Display student result view
+    function displayResultScreen(record) {
+      document.getElementById("quizScreen").classList.add("hidden");
+      document.getElementById("resultScreen").classList.remove("hidden");
+
+      document.getElementById("resultStudentName").innerText = record.studentName;
+      document.getElementById("resultScore").innerText = `${record.score} / 10`;
+      document.getElementById("resultPercentage").innerText = `${record.percentage}%`;
+      document.getElementById("resultTimeTaken").innerText = record.timeTaken;
+
+      const title = document.getElementById("resultTitle");
+      const iconBox = document.getElementById("scoreIconContainer");
+
+      if (record.score >= 8) {
+        title.innerText = "Xuất sắc! 🎉";
+        iconBox.className = "w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl mx-auto flex items-center justify-center text-3xl mb-4";
+      } else if (record.score >= 5) {
+        title.innerText = "Làm tốt lắm! 👍";
+        iconBox.className = "w-16 h-16 bg-blue-100 text-brand-600 rounded-2xl mx-auto flex items-center justify-center text-3xl mb-4";
+      } else {
+        title.innerText = "Hãy cố gắng ôn tập thêm! 💪";
+        iconBox.className = "w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl mx-auto flex items-center justify-center text-3xl mb-4";
+      }
+
+      // Render review list
+      const reviewContainer = document.getElementById("resultAnswersReview");
+      reviewContainer.innerHTML = record.review.map(q => `
+        <div class="p-3.5 sm:p-4 rounded-2xl border ${q.isCorrect ? 'border-emerald-200 bg-emerald-50/40' : 'border-rose-200 bg-rose-50/40'}">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center space-x-2">
+              <span class="w-6 h-6 rounded-md ${q.isCorrect ? 'bg-emerald-600' : 'bg-rose-500'} text-white font-bold text-xs inline-flex items-center justify-center">
+                ${q.id}
+              </span>
+              <span class="font-bold text-slate-800 text-sm sm:text-base">${q.collocation}</span>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${q.isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+              ${q.isCorrect ? '✓ Đúng' : '✗ Sai'}
+            </span>
+          </div>
+
+          <div class="mt-2 text-xs sm:text-sm pl-8 space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="text-slate-500 font-medium">Bạn chọn:</span>
+              <span class="font-bold ${q.isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${q.studentChoice}</span>
+              ${!q.isCorrect ? `<span class="text-slate-400">|</span> <span class="text-slate-500 font-medium">Đáp án đúng:</span> <strong class="text-emerald-700 font-bold">${q.correctChoice}</strong>` : ''}
+            </div>
+            <div class="text-slate-600 italic">
+              <strong>Nghĩa:</strong> "${q.definition}"
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Restart quiz for another attempt
+    window.restartQuiz = function() {
+      clearInterval(currentStudent.timerInterval);
+      document.getElementById("studentNameInput").value = "";
+      document.getElementById("resultScreen").classList.add("hidden");
+      document.getElementById("startScreen").classList.remove("hidden");
+    };
+
+    // Load data for teacher dashboard
+    window.loadTeacherData = async function() {
+      // If Firestore is available, fetch latest records
+      try {
+        if (db && auth?.currentUser) {
+          const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'submissions');
+          const snap = await getDocs(colRef);
+          const remoteList = [];
+          snap.forEach(d => remoteList.push(d.data()));
+          if (remoteList.length > 0) {
+            // merge or use remote records
+            allSubmissions = remoteList.sort((a,b) => (b.timestamp || 0) - (a.timestamp || 0));
+          }
+        }
+      } catch (e) {
+        console.warn("Using stored submissions list");
+      }
+
+      renderTeacherDashboard();
+    };
+
+    // Render teacher dashboard view
+    function renderTeacherDashboard() {
+      const tbody = document.getElementById("teacherTableBody");
+      const emptyMsg = document.getElementById("emptyTableMessage");
+      const totalCount = allSubmissions.length;
+
+      document.getElementById("statTotalSubmissions").innerText = totalCount;
+      document.getElementById("tableBadgeCount").innerText = totalCount;
+
+      if (totalCount === 0) {
+        tbody.innerHTML = "";
+        emptyMsg.classList.remove("hidden");
+        document.getElementById("statAvgScore").innerHTML = `0.0<span class="text-base text-slate-400 font-normal">/10</span>`;
+        document.getElementById("statPassRate").innerText = `0%`;
+        document.getElementById("statHardestQuestion").innerText = "Chưa có";
+        return;
+      }
+
+      emptyMsg.classList.add("hidden");
+
+      // Calculate stats
+      const totalScore = allSubmissions.reduce((sum, s) => sum + s.score, 0);
+      const avg = (totalScore / totalCount).toFixed(1);
+      document.getElementById("statAvgScore").innerHTML = `${avg}<span class="text-base text-slate-400 font-normal">/10</span>`;
+
+      const passedCount = allSubmissions.filter(s => s.score >= 7).length;
+      const passRate = Math.round((passedCount / totalCount) * 100);
+      document.getElementById("statPassRate").innerText = `${passRate}%`;
+
+      // Find hardest question
+      const mistakeCounts = {};
+      VOCABULARY_DATA.forEach(v => mistakeCounts[v.id] = 0);
+
+      allSubmissions.forEach(sub => {
+        if (sub.review) {
+          sub.review.forEach(r => {
+            if (!r.isCorrect) {
+              mistakeCounts[r.id] = (mistakeCounts[r.id] || 0) + 1;
+            }
+          });
+        }
+      });
+
+      let hardestId = 1;
+      let maxMistakes = -1;
+      for (const [id, count] of Object.entries(mistakeCounts)) {
+        if (count > maxMistakes) {
+          maxMistakes = count;
+          hardestId = id;
+        }
+      }
+
+      const hardestItem = VOCABULARY_DATA.find(v => v.id == hardestId);
+      if (maxMistakes > 0 && hardestItem) {
+        document.getElementById("statHardestQuestion").innerText = `Câu ${hardestItem.id}: ${hardestItem.collocation} (${maxMistakes} lượt sai)`;
+      } else {
+        document.getElementById("statHardestQuestion").innerText = "Chưa có lỗi đáng kể";
+      }
+
+      // Populate Table
+      tbody.innerHTML = allSubmissions.map((sub, index) => {
+        const scoreColor = sub.score >= 8 ? 'text-emerald-600 bg-emerald-50' : (sub.score >= 5 ? 'text-brand-600 bg-brand-50' : 'text-rose-600 bg-rose-50');
+        return `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="py-3 px-4 font-bold text-slate-400">${index + 1}</td>
+            <td class="py-3 px-4 font-bold text-slate-900">${escapeHtml(sub.studentName)}</td>
+            <td class="py-3 px-4">
+              <span class="inline-block px-2.5 py-0.5 rounded-full font-extrabold ${scoreColor}">
+                ${sub.score} / 10 (${sub.percentage}%)
+              </span>
+            </td>
+            <td class="py-3 px-4 font-medium text-slate-600">${sub.timeTaken}</td>
+            <td class="py-3 px-4 text-slate-500 text-xs">${sub.submittedAt}</td>
+            <td class="py-3 px-4 text-center">
+              <button 
+                onclick="viewStudentDetail(${index})" 
+                class="px-3 py-1 bg-brand-50 hover:bg-brand-100 text-brand-600 text-xs font-bold rounded-lg transition"
+              >
+                Chi tiết
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Filter students by name in teacher view
+    window.filterStudentTable = function() {
+      const query = document.getElementById("studentFilterInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#teacherTableBody tr");
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(query) ? "" : "none";
+      });
+    };
+
+    // View detailed answers of specific student
+    window.viewStudentDetail = function(index) {
+      const student = allSubmissions[index];
+      if (!student) return;
+
+      document.getElementById("detailModalStudentName").innerText = student.studentName;
+      document.getElementById("detailModalStudentMeta").innerText = `Điểm: ${student.score}/10 (${student.percentage}%) | Thời gian làm: ${student.timeTaken} | Nộp lúc: ${student.submittedAt}`;
+
+      const container = document.getElementById("detailModalBody");
+      container.innerHTML = student.review.map(item => `
+        <div class="p-3 rounded-xl border ${item.isCorrect ? 'border-emerald-200 bg-emerald-50/30' : 'border-rose-200 bg-rose-50/30'} flex items-start justify-between">
+          <div>
+            <div class="font-bold text-slate-800 text-xs sm:text-sm">
+              <span class="text-slate-400 font-normal mr-1">#${item.id}</span> ${item.collocation}
+            </div>
+            <div class="text-xs text-slate-600 mt-1">
+              Đáp án học sinh chọn: <strong class="${item.isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${item.studentChoice}</strong> 
+              ${!item.isCorrect ? `| Đáp án đúng: <strong class="text-emerald-700 font-bold">${item.correctChoice}</strong>` : ''}
+            </div>
+            <div class="text-[11px] text-slate-500 italic mt-0.5">
+              ${item.definition}
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold ${item.isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+            ${item.isCorrect ? 'ĐÚNG' : 'SAI'}
+          </span>
+        </div>
+      `).join('');
+
+      document.getElementById("studentDetailModal").classList.remove("hidden");
+    };
+
+    // Export submissions to CSV
+    window.exportCSV = function() {
+      if (allSubmissions.length === 0) {
+        showToast("Chưa có dữ liệu học sinh để xuất!", false);
+        return;
+      }
+
+      let csv = "STT,Họ và tên,Điểm số,Phần trăm,Thời gian làm,Thời gian nộp\n";
+      allSubmissions.forEach((s, idx) => {
+        csv += `"${idx + 1}","${s.studentName}","${s.score}/10","${s.percentage}%","${s.timeTaken}","${s.submittedAt}"\n`;
+      });
+
+      const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `Celebrity_Vocabulary_Results_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Đã tải xuống file CSV thành công!");
+    };
+
+    // Confirm clear all results
+    window.confirmClearAllResults = function() {
+      if (allSubmissions.length === 0) {
+        showToast("Danh sách hiện tại đang trống!");
+        return;
+      }
+      if (window.confirm("Bạn có chắc chắn muốn xóa toàn bộ kết quả bài thi của các học sinh không?")) {
+        allSubmissions = [];
+        renderTeacherDashboard();
+        showToast("Đã xóa tất cả kết quả học sinh!");
+      }
+    };
+
+    // Helper to sanitize text
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Default mock samples for initial demo so teacher can preview immediately
+    allSubmissions = [
+      {
+        studentName: "Nguyễn Minh Châu",
+        score: 10,
+        total: 10,
+        percentage: 100,
+        timeTaken: "01:45",
+        submittedAt: new Date(Date.now() - 3600000).toLocaleString('vi-VN'),
+        timestamp: Date.now() - 3600000,
+        review: VOCABULARY_DATA.map(v => ({
+          id: v.id,
+          collocation: v.collocation,
+          studentChoice: v.correctKey,
+          correctChoice: v.correctKey,
+          definition: v.definition,
+          isCorrect: true
+        }))
+      },
+      {
+        studentName: "Trần Hoàng Nam",
+        score: 8,
+        total: 10,
+        percentage: 80,
+        timeTaken: "02:30",
+        submittedAt: new Date(Date.now() - 7200000).toLocaleString('vi-VN'),
+        timestamp: Date.now() - 7200000,
+        review: VOCABULARY_DATA.map(v => ({
+          id: v.id,
+          collocation: v.collocation,
+          studentChoice: v.id === 4 ? "B" : (v.id === 9 ? "J" : v.correctKey),
+          correctChoice: v.correctKey,
+          definition: v.definition,
+          isCorrect: v.id !== 4 && v.id !== 9
+        }))
+      }
+    ];
+
+    // Initial render
+    window.onload = function() {
+      renderQuizLayout();
+    };
+  </script>
+</body>
+</html>
